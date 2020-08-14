@@ -9,7 +9,7 @@ const renderItem = ({ item }) => {
         <>
             <Text style={styles.title}>"{item.name} {'-'} {item.capital}"</Text>
         </>    
-    )
+    ) 
 };
 
 export default class Index extends Component {
