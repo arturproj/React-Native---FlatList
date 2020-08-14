@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-import { StatusBar, StyleSheet, SafeAreaView, FlatList, Text, ScrollView } from 'react-native';
+import { StatusBar, StyleSheet, FlatList, Text, ScrollView } from 'react-native';
+import Image from 'react-native-remote-svg'
 
 import API from './api'
 
 const renderItem = ({ item }) => {
-    //console.log('test', item)
+    console.log('test', item.name,item.capital,item.flag)
     return (
         <>
-            <Text style={styles.title}>"{item.name} {'-'} {item.capital}"</Text>
+            <Text style={styles.title}>name: {item.name}</Text>
+            <Text style={styles.title}>capital: {item.capital}</Text>
+            <Image
+                source={{ uri: item.flag }}
+                style={{ marginLeft: 10, height: 100, width: 300,  resizeMode: 'contain'  }} 
+                resizeMode="contain"
+                resizeMethod="resize"
+            />
         </>    
     ) 
 };
@@ -24,9 +32,8 @@ export default class Index extends Component {
     componentDidMount(){
         API.getCountries().then(list => {
             this.setState({
-                countries : list.slice(0, 100)
+                countries : list.slice(0, 10)
             })
-            //console.log("success",this.state.countries.length)
         })        
     }
 
